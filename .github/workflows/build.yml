@@ -1,7 +1,7 @@
 name: Build Spigot Plugin
 
 on:
-  push:  # Triggers on any commit to any branch
+  push:
     branches:
       - '**'
   pull_request:
@@ -16,11 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
           cache: 'maven'
 
       - name: Build with Maven
