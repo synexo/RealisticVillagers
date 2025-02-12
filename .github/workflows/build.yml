@@ -1,9 +1,9 @@
 name: Build Spigot Plugin
 
 on:
-  push:
+  push:  # Triggers on any commit to any branch
     branches:
-      - main
+      - '**'
   pull_request:
     branches:
       - main
