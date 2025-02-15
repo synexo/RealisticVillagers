@@ -35,7 +35,7 @@
          distribution: 'temurin' 
          server-id: phoenixdevt-releases 
      - name: Install depends 
-       run: mvn install
+       run: mvn clean install -U
      - name: Build with Maven 
        run: mvn -B package --file pom.xml
      - run: mkdir staging && cp target/*.jar staging 
