@@ -17,9 +17,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.ai.gossip.GossipContainer;
 import net.minecraft.world.entity.ai.gossip.GossipType;
-import net.minecraft.world.entity.npc.Villager;
-
-import org.bukkit.entity.Villager.ReputationEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -28,11 +25,6 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class CustomGossipContainer extends GossipContainer {
-
-    public CustomGossipContainer(Villager villager) {
-        super(villager);
-        //TODO Auto-generated constructor stub
-    }
 
     private final Map<UUID, EntityGossips> gossips = Maps.newHashMap();
 
@@ -133,12 +125,12 @@ public class CustomGossipContainer extends GossipContainer {
     }
 
     @Override
-    public void remove(UUID uuid, GossipType type, int amount, ReputationEvent changeReason) {
+    public void remove(UUID uuid, GossipType type, int amount) {
         add(uuid, type, -amount);
     }
 
     @Override
-    public void remove(UUID uuid, GossipType type, ReputationEvent changeReason) {
+    public void remove(UUID uuid, GossipType type) {
         EntityGossips gossips = this.gossips.get(uuid);
         if (gossips == null) return;
 
@@ -147,7 +139,7 @@ public class CustomGossipContainer extends GossipContainer {
     }
 
     @Override
-    public void remove(GossipType type, ReputationEvent changeReason) {
+    public void remove(GossipType type) {
         Iterator<EntityGossips> iterator = gossips.values().iterator();
 
         while (iterator.hasNext()) {
